@@ -32,12 +32,12 @@ ZSH_THEME="robbyrussell"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git)
+plugins=(git zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-bindkey -v
+#bindkey -v
 setopt promptsubst
 prompt_history() {
 #    CYCLE=$(( $HISTCMD % 5 ))
@@ -46,10 +46,11 @@ prompt_history() {
  #   fi
 }
 
-RPROMPT='$(prompt_history)'
+# RPROMPT='$(prompt_history)'
 
-bindkey -M viins '^r' history-incremental-search-backward
-bindkey -M vicmd '^r' history-incremental-search-backward
+#bindkey -M viins '^r' history-incremental-search-backward
+#bindkey -M vicmd '^r' history-incremental-search-backward
+bindkey -e
 
 alias -g ...='../..'
 alias -g ....='../../..'
@@ -63,9 +64,27 @@ alias -g bek='bundle exec kitchen'
 alias -g tailf='tail -f'
 alias tmux="TERM=screen-256color-bce tmux"
 alias -g ki="kitchen"
+alias -g traceroute='grc traceroute'
 
 export EDITOR='vim'
-export PATH="$HOME/.rbenv/bin:$HOME/packer:/usr/local/bin:$PATH"
+export PATH="$HOME/bin:$HOME/.rbenv/bin:$HOME/zendesk/github:$HOME/zendesk/github/chef:$HOME/github:$HOME/packer:/usr/local/bin:$PATH"
 export TERM="xterm-256color"
 eval "$(rbenv init -)"
 source $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# added by travis gem
+[ -f /Users/bhouse/.travis/travis.sh ] && source /Users/bhouse/.travis/travis.sh
+#source /usr/local/share/zsh/site-functions/_aws
+
+# The next line updates PATH for the Google Cloud SDK.
+source '/Users/bhouse/google-cloud-sdk/path.zsh.inc'
+
+# The next line enables zsh completion for gcloud.
+source '/Users/bhouse/google-cloud-sdk/completion.zsh.inc'
+export PATH="$HOME/tools/packer_0.10.1_darwin_amd64:$PATH"
+export PATH="$HOME/tools/terraform_0.6.6:$PATH"
+export PATH=$PATH:/usr/local/opt/go/libexec/bin
+export GOPATH=/usr/local/opt/go/libexec/bin
+
+#eval "$(docker-machine env default 2>/dev/null)"
+export EC2_HOST_CONFIG_FILE=~/.ec2-host

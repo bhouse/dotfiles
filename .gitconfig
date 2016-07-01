@@ -1,6 +1,7 @@
 [user]
-	name = Ben House
-	email = ben@benhouse.io
+  name = Ben House
+  email = ben@ben.house
+	signingkey = D54AECCB
 [diff]
 [color]
     ui = auto
@@ -21,6 +22,7 @@
     ba = branch -a
     ds = diff --stat=160,120
     dh1 = diff HEAD~1
+    new = !sh -c 'git checkout -b bhouse/$0'
 
     # Divergence (commits we added and commits remote added)
     div = divergence
@@ -50,4 +52,6 @@
 [hub]
     protocol = ssh
 [push]
-	default = simple
+  default = simple
+[commit]
+	gpgsign = true
